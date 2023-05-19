@@ -7,12 +7,29 @@ import java.io.*;
  */
 public class UsingBufferedReader {
     public static void main(String[] args) throws IOException {
-
-
+    	if(args.length < 1) {
+    		System.out.println("Error: Please provide the file name as a command line argument.");
+    		return;
+    	}
+    	
+    	String filename = args[0];
+    	
+    	StopWatch.start();
+    	
+    	BufferedReader read = new BufferedReader(new FileReader(filename));
+    	
+    	while(read.readLine() != null) {}
+    	
+    	long duration = StopWatch.stop();
+    	System.out.println(duration + "milsec");
+    	
+    	read.close();
+    	
+    	/*
         //-------------- Test reading 1 MB file. --------------------
 
         StopWatch.start();
-
+        
         BufferedReader inputStream= new BufferedReader(new FileReader(DumpDataWriter.input1MB));
         while (inputStream.read()!=-1){}
 
@@ -33,6 +50,7 @@ public class UsingBufferedReader {
         System.out.println(duration2 + " milsec");
 
         inputStream2.close();
+        */
 
         /*
         //-------------- Test reading 100 MB file. --------------------
